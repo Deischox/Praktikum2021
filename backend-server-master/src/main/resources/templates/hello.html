@@ -224,7 +224,7 @@ header{
                   <label class="btn btn-secondary m-1" for="option1">BTS</label>
 
                   <input type="radio" class="btn-check" onclick="getData('china')" name="options" id="option2" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option2">china</label>
+                  <label class="btn btn-secondary m-1" for="option2">GOT7_Breath</label>
 
                   <input type="radio" class="btn-check" onclick="getData('trump')" name="options" id="option3" autocomplete="off">
                   <label class="btn btn-secondary m-1" for="option3">Trump</label>
@@ -372,6 +372,7 @@ header{
 
 
 <script>
+  var maxValue;
 function wordCloud()
 {
   
@@ -403,8 +404,8 @@ for (index = 0; index < w.length; ++index) {
 
 
 
-var maxValue = Math.max.apply(Math, values);
-var fontSizeMultiply = 100/maxValue;
+maxValue = Math.max.apply(Math, values);
+var fontSizeMultiply = (1/maxValue)*96;
 
 
 // List of words
@@ -430,11 +431,11 @@ var svg = d3.select("#my_dataviz").append("svg")
 var layout = d3.layout.cloud()
   .size([width, height])
   .words(myWords.map(function(d) {
-      return {text: d, size: 10 + Math.random() * 90};
+      return {text: d, size: 10};
     }))
-    .padding(5)
+    .padding(1)
     .font("Impact")
-    .fontSize(function(d) { return Math.max(per[words.indexOf(d.text)].innerHTML.split("%")[0]*fontSizeMultiply,10); })
+    .fontSize(function(d) { return Math.max(per[words.indexOf(d.text)].innerHTML.split("%")[0]*fontSizeMultiply,10)})
     .on("end", draw);
 layout.start();
 
@@ -505,7 +506,7 @@ function draw(words) {
   
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 100])
+    .domain([0, maxValue])
     .range([ height, 0]);
   svg.append("g")
     .attr("class", "myYaxis")
@@ -513,8 +514,25 @@ function draw(words) {
     .call(d3.axisLeft(y));
   
   // A function that create / update the plot for a given variable:
-  function update(data) {
+  function update(data, max) {
   
+    try{
+
+      document.getElementById('yAxisBar').remove()
+    }catch(e)
+    {
+      console.log(e)
+    }
+
+    var y = d3.scaleLinear()
+    .domain([0, max])
+    .range([ height, 0]);
+    svg.append("g")
+    .attr("class", "myYaxis")
+    .attr("class", "axisWhite")
+    .attr("id", "yAxisBar")
+    .call(d3.axisLeft(y));
+
     var u = svg.selectAll("rect").data(data);
     document.getElementById("xAxis").remove();
     x = d3.scaleBand()
@@ -750,21 +768,26 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                  
                   
                   var newdata = [];
+                  var values = [];
                   var children = document.getElementById("basecamp").children;
                   for(i = 0; i < children.length && i < Object.keys(array['words']).length; i++)
                   {
                     children[i].children[1].innerHTML = array.words[i].word;
                     children[i].children[2].innerHTML = array.words[i].percentage +"%";
+                    values[i] = (parseFloat(array.words[i].percentage));
                     group = array.words[i].word;
                     value = array.words[i].percentage;
 
                     newdata[i] = {group, value};
                   }
-                  
-                  update(newdata);
+                  console.log(values);
+                  maxValue = Math.max.apply(Math,values);
+                  console.log("Max Value: ", Math.max.apply(Math,values))
+                  wordCloud();
+                  update(newdata, maxValue);
                   console.log(typeof newdata);
                   //updatePie(array['sentiment']);
-                  wordCloud();
+                  
                   
                   console.log(Math.round((4 - array['sentiment']) * 100) / 100)
                   piedata = {a: Math.round((array['sentiment']) * 100) / 100, b: Math.round((4 - array['sentiment']) * 100) / 100}

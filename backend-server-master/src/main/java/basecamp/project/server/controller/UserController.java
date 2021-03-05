@@ -65,7 +65,6 @@ public class UserController {
 			perc += w.percentage;
 		}
 
-		System.out.println(sentiment/perc);
 		sentiment /= perc;
 
 		www.put("words",words);
@@ -85,11 +84,11 @@ public class UserController {
 			File file = ResourceUtils.getFile(path);
 			
 			Scanner myReader = new Scanner(file);
-			System.out.println(myReader.hasNextLine());
 			while (myReader.hasNextLine()) {
 			  String data = myReader.nextLine();
-			  System.out.println(data);
-				if(!data.split("#")[1].split("\t")[0].contains("https://") && !data.split("#")[1].split("\t")[0].contains("@")  )
+			  System.out.print(data.split("#")[1].split("\t")[0] + "    ");
+			  System.out.println(data.split("#")[1].split("\t")[0].matches("[a-zA-Z1-9]+"));
+				if(data.split("#")[1].split("\t")[0].matches("[a-zA-Z1-9]+"))
 				{
 					words.add(new word(data.split("#")[1].split("\t")[0], Float.parseFloat(data.split("\t")[1])));
 				}
