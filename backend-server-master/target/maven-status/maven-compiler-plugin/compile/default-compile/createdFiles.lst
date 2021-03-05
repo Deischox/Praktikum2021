@@ -1,4 +1,6 @@
+basecamp\project\server\functions\NLP.class
 basecamp\project\server\controller\word.class
+basecamp\project\server\functions\analyser.class
 basecamp\project\server\ServerApplication.class
 basecamp\project\server\controller\UserController.class
 basecamp\project\server\controller\IndexController.class

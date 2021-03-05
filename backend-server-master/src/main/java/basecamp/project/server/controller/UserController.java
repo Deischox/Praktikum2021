@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import basecamp.project.server.functions.NLP;
 
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.*; // Import the Scanner class to read text files
+
+
+import org.springframework.util.ResourceUtils;
+
 
 @RestController
 @RequestMapping("/users")
@@ -24,17 +31,21 @@ public class UserController {
 		System.out.println(hashtag.replace(" ", ""));
 		JSONObject www = new JSONObject();
 		JSONArray words = new JSONArray();
-		word[] test;
-		if(hashtag.replace(" ", "").equals("blm"))
+		List<word> test = new ArrayList<word>();
+		switch(hashtag.replace(" ", ""))
 		{
-				test = new word[] { new word("Police", 80.5f), new word("Black", 25.6f), new word("Matters", 14.2f),
-				new word("dumb", 8.7f), new word("hate", 4.7f), new word("America", 1.7f), new word("Trump", 1.4f),
-				new word("Sad", 0.7f), new word("Black", 25.6f), new word("Matters", 14.2f), new word("dumb", 8.7f),
-				new word("hate", 4.7f), new word("America", 1.7f), new word("Trump", 1.4f), new word("Sad", 0.7f) };
-		}else{
-			test = new word[] { new word("dumb",23.5f), new word("love", 95.6f), new word("Sad", 64.2f),
-				new word("Happy", 67.7f), new word("Together", 2.7f), new word("kill", 9.7f), new word("hate", 17.4f)};
+			case "china":
+				test = createWords("classpath:static/json/als.txt");
+				break;
+			case "BTS":
+				test = createWords("classpath:static/json/bts.txt");
+				break;
+			
+
 		}
+
+
+
 		
 		for (word w : test) {
 			JSONObject target = new JSONObject();
@@ -42,6 +53,8 @@ public class UserController {
 			target.put("percentage", w.percentage);
 			words.add(target);
 		}
+
+
 
 		NLP.init();
 		float sentiment = 0f;
@@ -63,6 +76,32 @@ public class UserController {
 	@RequestMapping("nrusers")
 	String nrUsers() {
 		return "2";
+	}
+
+	public List<word> createWords(String path)
+	{
+		List<word> words = new ArrayList<word>();
+		try {
+			File file = ResourceUtils.getFile(path);
+			
+			Scanner myReader = new Scanner(file);
+			System.out.println(myReader.hasNextLine());
+			while (myReader.hasNextLine()) {
+			  String data = myReader.nextLine();
+			  System.out.println(data);
+				if(!data.split("#")[1].split("\t")[0].contains("https://") && !data.split("#")[1].split("\t")[0].contains("@")  )
+				{
+					words.add(new word(data.split("#")[1].split("\t")[0], Float.parseFloat(data.split("\t")[1])));
+				}
+			}
+			myReader.close();
+		  } catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		  }
+
+		System.out.println(words);
+		return words;
 	}
 
 

@@ -41,7 +41,8 @@ public class IndexController {
 			new word("Trump", 1.4f),new word("Sad", 0.7f)};
 		}else
 		{
-			words = new word[] {new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f),new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f)};
+			words = new word[] {new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f),new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f)
+		,new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f),new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f)};
 		}
 		String s = analyser.getwords();
 		model.addAttribute("words",words);

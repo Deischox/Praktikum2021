@@ -188,6 +188,10 @@ header{
   color:#69b3a2;
 }
 
+#sentbtn:hover{
+  color:#69b3a2;
+}
+
 
 </style>
 
@@ -201,12 +205,12 @@ header{
       <h1 style="font-size:48px; display: inline;" class="text-light" id="headerTitle">Which words are often used with this hashtag <p style="font-size:48px; cursor: pointer;display: inline;" class="text-light" onclick="startDisco()">?</p></h1>
 		
     </div>
-    <h3 class="text-light">Select a Hashtag</h3>
+    <h3 class="text-light">Select a Hashtag down</h3>
         <form style="width: 100%;">
             
 
 
-    </form>
+        </form>
         
 	</div>
 </div>
@@ -216,11 +220,11 @@ header{
         <form style="width: 100%;">
           <div class="col-auto d-flex justify-content-center">
                   <!--<input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Your Hashtag (#Blm, #Tbt, ...)">-->
-                  <input type="radio" class="btn-check" onclick="getData('blm')" name="options" id="option1" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option1">Blm</label>
+                  <input type="radio" class="btn-check" onclick="getData('BTS')" name="options" id="option1" autocomplete="off">
+                  <label class="btn btn-secondary m-1" for="option1">BTS</label>
 
-                  <input type="radio" class="btn-check" onclick="getData('tbt')" name="options" id="option2" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option2">Tbt</label>
+                  <input type="radio" class="btn-check" onclick="getData('china')" name="options" id="option2" autocomplete="off">
+                  <label class="btn btn-secondary m-1" for="option2">china</label>
 
                   <input type="radio" class="btn-check" onclick="getData('trump')" name="options" id="option3" autocomplete="off">
                   <label class="btn btn-secondary m-1" for="option3">Trump</label>
@@ -232,8 +236,8 @@ header{
                   <i class="bi bi-gear-fill" id="settingsBtn" onclick="showSettings()"></i>
                   <div style="position: relative">
 
-                  <div id="settingsDiv" class="d-none"style="position: absolute; right: -150px; top: 25px; background-color: #212529;">
-                    <div class="row" style="width: 240px; background-color: #212529;">
+                  <div id="settingsDiv" class="d-none"style="position: absolute; right: -150px; top: 25px; background-color: #212529; z-index:100;">
+                    <div class="row" style="width: 240px; background-color: #212529; border: 1px solid lightgray;">
                       
 
                       <small style="font-size: 12px; text-align: left;">Settings:</small>
@@ -263,7 +267,7 @@ header{
                       <div class="row mb-3">
                         <div class="col-sm-10 offset-sm-2">
                           <div class="form-check">
-                            <input class="form-check-input col-sm-2" type="checkbox" id="gridCheck3" onclick="settingsCheckbox('my_piechart')" checked>
+                            <input class="form-check-input col-sm-2" type="checkbox" id="gridCheck3" onclick="settingsCheckbox('sentiment_pie')" checked>
                             <label class="form-check-label" for="gridCheck1">
                               Pie Chart
                             </label>
@@ -296,25 +300,40 @@ header{
 </div>
 
     
-    <div>
-      <div class="d-flex justify-content-center">
+    <div class="container">
+     
           
         <!-- Create a div where the graph will take place -->
-        <div id="my_dataviz"></div>
-
         <div class="row">
+
+          <div class="col">
+            <div id="my_dataviz"></div>
+          </div>
           
-         <div id="my_barchart"></div>
-        
-        </div>
+
+         
+          <div class="col">
+            <div id="my_barchart"></div>
+          </div>
+          
+          
+          <div class="col">
+            <div style="position: relative;">
+              <div id="sentiment_pie" class="text-center">
+                <h3 class="text-center text-light" style="display: inline;">Sentiment Score: <i class="bi bi-info-circle" id="sentbtn" style="display: inline;" onclick="settingsCheckbox('sent_info')"></i></h3>
+                <div id="my_piechart"></div>
+                <h3 style="display: inline;"><p class="text-center text-light" id="sentiment_score"></p></h3>
+                <div id="sent_info" class="text-light d-none" style="position: absolute;top: 45px; left: 150px;  background-color: #212529; padding: 10px; border: 1px solid lightgray;">Sentiment Score determines if the emotions<br> overall are good or bad (0 = Worst, 4 = Best)</div>
+              </div>
+            </div>
+          </div>
 
 
-        <div class="row">
-          <div id="my_piechart"></div>
-        </div>
+          
 
-      </div>  
+      </div>
     </div>
+    <hr>
 
 
     <div class="d-flex justify-content-center">
@@ -457,7 +476,7 @@ function draw(words) {
   
   // set the dimensions and margins of the graph
   var margin = {top: 30, right: 30, bottom: 70, left: 60},
-      width = 460 - margin.left - margin.right,
+      width = 860 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
   
   // append the svg object to the body of the page
@@ -534,8 +553,8 @@ function draw(words) {
 <script>
 
   // set the dimensions and margins of the graph
-  var piewidth = 450
-      pieheight = 400
+  var piewidth = 350
+      pieheight = 300
       piemargin = 40
   
   // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
@@ -564,6 +583,19 @@ function draw(words) {
   
     //var data = {a: datainput, b: 4-datainput}
     // Compute the position of each group on the pie:
+
+    
+  try{
+    var old = document.getElementById('my_piechart').children[0].children[0].children;
+    console.log(old)
+    for(var i = 0; i < old.length; i++)
+    {
+      old[i].remove()
+    }
+    }catch(e)
+  {
+  console.log(e); 
+  }
     
     var pie = d3.pie()
       .value(function(d) {return d.value; })
@@ -730,11 +762,13 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                   }
                   
                   update(newdata);
+                  console.log(typeof newdata);
                   //updatePie(array['sentiment']);
                   wordCloud();
                   
                   console.log(Math.round((4 - array['sentiment']) * 100) / 100)
                   piedata = {a: Math.round((array['sentiment']) * 100) / 100, b: Math.round((4 - array['sentiment']) * 100) / 100}
+                  document.getElementById("sentiment_score").innerHTML = array['sentiment'];
                   updatePie(piedata);
                     
                  
