@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch What2Think",
+            "request": "launch",
+            "mainClass": "basecamp.project.server.functions.What2Think",
+            "projectName": "server"
+        },
+        {
+            "type": "java",
             "name": "Launch ServerApplication",
             "request": "launch",
             "mainClass": "basecamp.project.server.ServerApplication",

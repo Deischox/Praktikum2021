@@ -178,7 +178,16 @@ header{
 .axisWhite text{
   fill: white;
 }  
-	
+
+#settingsBtn{
+  
+  margin-left: 60px;
+}
+
+#settingsBtn:hover{
+  color:#69b3a2;
+}
+
 
 </style>
 
@@ -188,41 +197,27 @@ header{
 
 <div>
 	<div class="text-center" style="position: absolute; left: 50%; top: 40%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);"> 
-		<h1 style="font-size:48px" class="text-light">Which words are often used with this hashtag?</h1>
-		<h3 class="text-light">Select a Hashtag</h3>
+		<div class="text">
+      <h1 style="font-size:48px; display: inline;" class="text-light" id="headerTitle">Which words are often used with this hashtag <p style="font-size:48px; cursor: pointer;display: inline;" class="text-light" onclick="startDisco()">?</p></h1>
+		
+    </div>
+    <h3 class="text-light">Select a Hashtag</h3>
         <form style="width: 100%;">
             <div class="col-auto d-flex justify-content-center">
                     <!--<input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Your Hashtag (#Blm, #Tbt, ...)">-->
                     <input type="radio" class="btn-check" onclick="getData('blm')" name="options" id="option1" autocomplete="off">
-                    <label class="btn btn-secondary" for="option1">Blm</label>
+                    <label class="btn btn-secondary m-1" for="option1">Blm</label>
 
                     <input type="radio" class="btn-check" onclick="getData('tbt')" name="options" id="option2" autocomplete="off">
-                    <label class="btn btn-secondary" for="option2">Tbt</label>
+                    <label class="btn btn-secondary m-1" for="option2">Tbt</label>
 
                     <input type="radio" class="btn-check" onclick="getData('trump')" name="options" id="option3" autocomplete="off">
-                    <label class="btn btn-secondary" for="option3">Trump</label>
+                    <label class="btn btn-secondary m-1" for="option3">Trump</label>
 
                     <input type="radio" class="btn-check" onclick="getData('Canada')" name="options" id="option4" autocomplete="off">
-                    <label class="btn btn-secondary" for="option4">Canada</label>
+                    <label class="btn btn-secondary m-1" for="option4">Canada</label>
                 
-                <!--<div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="countryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 200px;">
-                    Country
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="countryDropdown">
-                    <li><a class="dropdown-item" href="#">blm</a></li>
-                    <li><a class="dropdown-item" href="#">tbt</a></li>
-                    <li><a class="dropdown-item" href="#">Canada</a></li>
-                    <li><a class="dropdown-item" href="#">Russia</a></li>
-                    <li><a class="dropdown-item" href="#">France</a></li>
-                    <li><a class="dropdown-item" href="#">Italy</a></li>
-                    <li><a class="dropdown-item" href="#">Sweden</a></li>
-                    </ul>
-                </div>-->
             </div>
-            <!--<button class="btn btn-primary mt-2" style="width: 200px;" type="button" id="search-btn">
-                Search
-            </button>-->
 
 
     </form>
@@ -230,9 +225,89 @@ header{
 	</div>
 </div>
 <div>
-    <h1 th:inline="text" class="text-light text-center mt-3">
-        #[[${hashtag}]]
-    </h1>
+    <div class="text-light text-center mt-3">
+        <!--#[[${hashtag}]]-->
+        <form style="width: 100%;">
+          <div class="col-auto d-flex justify-content-center">
+                  <!--<input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Your Hashtag (#Blm, #Tbt, ...)">-->
+                  <input type="radio" class="btn-check" onclick="getData('blm')" name="options" id="option1" autocomplete="off">
+                  <label class="btn btn-secondary m-1" for="option1">Blm</label>
+
+                  <input type="radio" class="btn-check" onclick="getData('tbt')" name="options" id="option2" autocomplete="off">
+                  <label class="btn btn-secondary m-1" for="option2">Tbt</label>
+
+                  <input type="radio" class="btn-check" onclick="getData('trump')" name="options" id="option3" autocomplete="off">
+                  <label class="btn btn-secondary m-1" for="option3">Trump</label>
+
+                  <input type="radio" class="btn-check" onclick="getData('Canada')" name="options" id="option4" autocomplete="off">
+                  <label class="btn btn-secondary m-1" for="option4">Canada</label>
+              
+
+                  <i class="bi bi-gear-fill" id="settingsBtn" onclick="showSettings()"></i>
+                  <div style="position: relative">
+
+                  <div id="settingsDiv" class="d-none"style="position: absolute; right: -150px; top: 25px; background-color: #212529;">
+                    <div class="row" style="width: 240px; background-color: #212529;">
+                      
+
+                      <small style="font-size: 12px; text-align: left;">Settings:</small>
+                    
+                      <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input col-sm-2" type="checkbox" id="gridCheck1" onclick="settingsCheckbox('my_dataviz')" checked>
+                            <label class="form-check-label" for="gridCheck1">
+                              Wordcloud
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input col-sm-2" type="checkbox" id="gridCheck2" onclick="settingsCheckbox('my_barchart')" checked>
+                            <label class="form-check-label" for="gridCheck1">
+                              Bar Chart
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input col-sm-2" type="checkbox" id="gridCheck3" onclick="settingsCheckbox('my_piechart')" checked>
+                            <label class="form-check-label" for="gridCheck1">
+                              Pie Chart
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input col-sm-2" type="checkbox" id="gridCheck3" onclick="settingsCheckbox('table')" checked>
+                            <label class="form-check-label" for="gridCheck1">
+                              Table
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                     
+                    </div>
+                    
+                </div>
+                
+                  </div>
+
+
+          </div>
+
+
+  </form>
+</div>
 
     
     <div>
@@ -243,7 +318,13 @@ header{
 
         <div class="row">
           
-        <div id="my_barchart"></div>
+         <div id="my_barchart"></div>
+        
+        </div>
+
+
+        <div class="row">
+          <div id="my_piechart"></div>
         </div>
 
       </div>  
@@ -253,7 +334,7 @@ header{
     <div class="d-flex justify-content-center">
         
         <div style="width: 60%;">
-            <table class="table table-dark">
+            <table class="table table-dark" id="table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -449,7 +530,7 @@ function draw(words) {
       .merge(u)
       .transition()
       .duration(1000)
-        .attr("x", function(d) { console.log(d.group); return  x(d.group); })
+        .attr("x", function(d) { return  x(d.group); })
         .attr("y", function(d) { return y(d.value); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.value); })
@@ -459,11 +540,85 @@ function draw(words) {
   
   }
 
-  // Initialize the plot with the first dataset
- 
-  console.log("DATA1 type",data1)
   
   </script>
+
+
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script>
+
+  // set the dimensions and margins of the graph
+  var piewidth = 450
+      pieheight = 400
+      piemargin = 40
+  
+  // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+  var radius = Math.min(piewidth, pieheight) / 2 - piemargin
+  
+  // append the svg object to the div called 'my_dataviz'
+  var svg2 = d3.select("#my_piechart")
+    .append("svg")
+      .attr("width", piewidth)
+      .attr("height", pieheight)
+      .attr("class", "area")
+    .append("g")
+      .attr("transform", "translate(" + piewidth / 2 + "," + pieheight / 2 + ")");
+  
+  // create 2 data_set
+  var data1 = {a: 1.8565, b: 2.15}
+  var data2 = {a: 6, b: 16}
+  
+  // set the color scale
+  var color = d3.scaleOrdinal()
+    .domain(["a", "b"])
+    .range(d3.schemeDark2);
+  
+  // A function that create / update the plot for a given variable:
+  function updatePie(data) {
+  
+    //var data = {a: datainput, b: 4-datainput}
+    // Compute the position of each group on the pie:
+    
+    var pie = d3.pie()
+      .value(function(d) {return d.value; })
+      .sort(function(a, b) {return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
+    var data_ready = pie(d3.entries(data))
+  
+    // map to data
+    var u = svg2.selectAll("path.area")
+      .data(data_ready)
+  
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    u
+      .enter()
+      .append('path')
+      .merge(u)
+      .transition()
+      .duration(1000)
+      .attr('d', d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
+      )
+      .attr('fill', function(d){ if(d.data.key == "a"){ return "#69b3a2"}else{return "#2F4858"}; })
+      .attr("stroke", "white")
+      .style("stroke-width", "2px")
+      .style("opacity", 1)
+  
+    // remove the group that is not present anymore
+    u
+      .exit()
+      .remove()
+
+    
+  
+  }
+  
+  updatePie(data1)
+  // Initialize the plot with the first dataset
+  
+  </script>
+
+  
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -529,8 +684,6 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
 
                 $("#search-btn").click(function(){
                   country = document.getElementById('inputPassword6').value
-                  console.log(window.location.href)
-                  console.log(window.location)
                   window.location = window.location.pathname + "?hashtag="+country
                 });
                 
@@ -540,7 +693,6 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                 
                 if(!(message == 'User'))
                 {
-                  console.log(message);
                   document.getElementById("inputPassword6").value = message
                 }
 
@@ -580,7 +732,6 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                  
                   
                   var newdata = [];
-                  console.log(Object.keys(array['words']).length);
                   var children = document.getElementById("basecamp").children;
                   for(i = 0; i < children.length && i < Object.keys(array['words']).length; i++)
                   {
@@ -591,11 +742,56 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
 
                     newdata[i] = {group, value};
                   }
-                  console.log(newdata);
+                  
                   update(newdata);
+                  //updatePie(array['sentiment']);
                   wordCloud();
+                  
+                  console.log(Math.round((4 - array['sentiment']) * 100) / 100)
+                  piedata = {a: Math.round((array['sentiment']) * 100) / 100, b: Math.round((4 - array['sentiment']) * 100) / 100}
+                  updatePie(piedata);
+                    
+                 
 
                 }
+
+
+                function showSettings()
+                {
+                  document.getElementById("settingsDiv").classList.toggle("d-none")
+                }
+
+                function settingsCheckbox(id)
+                {
+                  document.getElementById(id).classList.toggle("d-none")
+                }
+                
+                function getRandomColor() {
+                  var letters = '0123456789ABCDEF';
+                  var color = '#';
+                  for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                  }
+                  return color;
+                }
+
+
+                var disco = false;
+
+                function startDisco()
+                {
+                  disco = !disco;
+                }
+
+                const interval = setInterval(function() {
+                  if(disco)
+                  {
+                    document.getElementById("main").style.backgroundColor = getRandomColor();
+                    
+                  }else
+                {
+                  document.getElementById("main").style.backgroundColor = "#121212";
+                }  }, 100);
             </script>
     </body>
 
