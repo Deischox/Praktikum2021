@@ -192,8 +192,59 @@ header{
   color:#69b3a2;
 }
 
+/* The search field */
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {outline: 3px solid #ddd;}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.dropbtn{min-width: 150px;}
 
 </style>
+
+
+
+
 
 <div id="particles-js" style="height: 80vh;"></div>
     <script src="javascript/particles.js"></script>
@@ -216,22 +267,24 @@ header{
 </div>
 <div>
     <div class="text-light text-center mt-3">
-        <!--#[[${hashtag}]]-->
+      
         <form style="width: 100%;">
           <div class="col-auto d-flex justify-content-center">
-                  <!--<input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Your Hashtag (#Blm, #Tbt, ...)">-->
-                  <input type="radio" class="btn-check" onclick="getData('BTS')" name="options" id="option1" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option1">BTS</label>
+            
+            <div class="dropdown">
+              <button type="button" onclick="myFunction()" class="dropbtn btn btn-secondary" id="dropdownbtn">Dropdown</button>
+              <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 
-                  <input type="radio" class="btn-check" onclick="getData('china')" name="options" id="option2" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option2">GOT7_Breath</label>
+                
+                <tr th:each="hash, iStat: ${hashs}">
+                  <a style="color: #121212;"  th:inline="text" th:attr="onclick=|chooseHashtag('${hash}')|">[[${hash}]]</a>
+                </tr>
 
-                  <input type="radio" class="btn-check" onclick="getData('trump')" name="options" id="option3" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option3">Trump</label>
+                
 
-                  <input type="radio" class="btn-check" onclick="getData('Canada')" name="options" id="option4" autocomplete="off">
-                  <label class="btn btn-secondary m-1" for="option4">Canada</label>
-              
+              </div>
+            </div>
 
                   <i class="bi bi-gear-fill" id="settingsBtn" onclick="showSettings()"></i>
                   <div style="position: relative">
@@ -294,6 +347,7 @@ header{
 
 
           </div>
+         
 
 
   </form>
@@ -314,6 +368,10 @@ header{
          
           <div class="col">
             <div id="my_barchart"></div>
+          </div>
+
+          <div class="col">
+            <div id="graphic"></div>
           </div>
           
           
@@ -369,8 +427,6 @@ header{
 <!-- Load d3-cloud -->
 <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
 
-
-
 <script>
   var maxValue;
 function wordCloud()
@@ -405,7 +461,7 @@ for (index = 0; index < w.length; ++index) {
 
 
 maxValue = Math.max.apply(Math, values);
-var fontSizeMultiply = (1/maxValue)*96;
+var fontSizeMultiply = (1/maxValue)*90;
 
 
 // List of words
@@ -416,8 +472,8 @@ var myWords = words;
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 450 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
+    width = 850 - margin.left - margin.right,
+    height = 850 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz").append("svg")
@@ -459,6 +515,8 @@ function draw(words) {
 }
 }
 </script>
+
+
 
 <script>
 
@@ -503,7 +561,12 @@ function draw(words) {
     .attr("id", "xAxis")
     .attr("fill", "#69b3a2")
     .call(d3.axisBottom(x))
+
+    
   
+
+
+
   // Add Y axis
   var y = d3.scaleLinear()
     .domain([0, maxValue])
@@ -513,6 +576,8 @@ function draw(words) {
     .attr("class", "axisWhite")
     .call(d3.axisLeft(y));
   
+
+
   // A function that create / update the plot for a given variable:
   function update(data, max) {
   
@@ -523,7 +588,7 @@ function draw(words) {
     {
       console.log(e)
     }
-
+    
     var y = d3.scaleLinear()
     .domain([0, max])
     .range([ height, 0]);
@@ -558,9 +623,6 @@ function draw(words) {
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.value); })
         .attr("fill", "#69b3a2")
-
-    
-  
   }
 
   
@@ -663,20 +725,21 @@ function draw(words) {
 
     <h1 class="text-center text-light" style="font-size: 65px;">Info</h1>
     <p class="text-light">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.   
-
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.   
-
-Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-    </p>
+      Seit Ihrer Einführung sind Hashtags zu einem wichtigen Bestandteil, der weltweiten Social-MediaPlattform geworden und befinden sich heutzutage in fast allen Beiträgen des Mikroblogging-Dienstes
+Twitter, genauso wie auch in anderen sozialen Netzwerken. Dort dienen sie nämlich als Schlagwörter.
+Wer zu einem bestimmten Thema etwas postet, kann dafür sorgen, dass sein Beitrag schneller
+gefunden werden kann, indem er zusätzlich ein passendes Hashtag zu seinem Beitrag hinzufügt,
+welches diesen inhaltlich beschreibt. Sucht man dann nach den Hashtags, für die man sich
+interessiert, findet man alle Beiträge, die zusammen mit diesem Schlagwort verfasst wurden. Jede
+Person, die auf einem sozialen Netzwerk wie Twitter oder Instagram angemeldet ist, kann ein
+Hashtag erstellen und ihn so benennen, wie er es möchte. So kann es passieren, dass mit der Zeit
+Hashtags entstehen, deren Bedeutung nicht wirklich eindeutig sind.
+Genau mit dieser Problematik setzt sich diese Webseite auseinander. Basierend auf einigen Tweets
+aus dem Zeitraum zwischen XXXX und YYYY liefern wir Ihnen alle Wörter, die in Verbindung mit den
+meist eingesetzten 100 Hashtags aus diesem Zeitraum aufgetaucht sind. Dadurch soll die Bedeutung
+von den Hashtags, anhand der Wörtern zu identifiziert werden, mit denen sie am öftesten erschienen
+sind. Somit können Sie auf eines der Hashtags klicken und es werden Ihnen die Wörter aufgelistet,
+die in dem Zeitraum prozentual in Verbindung mit dem Hashtag aufgetaucht sind.</p>
   </div><!-- /.container -->
 
 
@@ -766,11 +829,11 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                 function changeTable(array)
                 {
                  
-                  
+                  console.log(array)
                   var newdata = [];
                   var values = [];
                   var children = document.getElementById("basecamp").children;
-                  for(i = 0; i < children.length && i < Object.keys(array['words']).length; i++)
+                  for(i = 0; i < 16; i++)
                   {
                     children[i].children[1].innerHTML = array.words[i].word;
                     children[i].children[2].innerHTML = array.words[i].percentage +"%";
@@ -835,6 +898,37 @@ Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                 {
                   document.getElementById("main").style.backgroundColor = "#121212";
                 }  }, 100);
+
+
+                /* When the user clicks on the button,
+                    toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                      document.getElementById("myDropdown").classList.toggle("show");
+                    }
+
+                    function chooseHashtag(hashtag)
+                    {
+                      document.getElementById("myDropdown").classList.toggle("show");
+                      document.getElementById("dropdownbtn").innerText = hashtag;
+                      getData(hashtag);
+
+                    }
+
+                    function filterFunction() {
+                      var input, filter, ul, li, a, i;
+                      input = document.getElementById("myInput");
+                      filter = input.value.toUpperCase();
+                      div = document.getElementById("myDropdown");
+                      a = div.getElementsByTagName("a");
+                      for (i = 0; i < a.length; i++) {
+                        txtValue = a[i].textContent || a[i].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                          a[i].style.display = "";
+                        } else {
+                          a[i].style.display = "none";
+                        }
+                      }
+                    }
             </script>
     </body>
 

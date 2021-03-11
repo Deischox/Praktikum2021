@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import basecamp.project.server.controller.word;
+import basecamp.project.server.functions.MySQLconnect;
 import basecamp.project.server.functions.analyser;
+
+import java.io.File;
+import java.io.InputStream;
 
 @Controller
 public class IndexController {
@@ -44,8 +48,19 @@ public class IndexController {
 			words = new word[] {new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f),new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f)
 		,new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f),new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f)};
 		}
+
 		String s = analyser.getwords();
 		model.addAttribute("words",words);
+
+ 		//TODO: SQL abfrage um alle Hashtags zu bekommen
+		String[] hashs = {"BTS","GOT7","2020Mama", "InWonderWatchParty"};
+		
+		MySQLconnect sql = new MySQLconnect();
+
+
+
+		model.addAttribute("hashs", hashs);
+
 		return "hello";
 	}
 

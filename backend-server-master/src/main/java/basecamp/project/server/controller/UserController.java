@@ -26,7 +26,7 @@ public class UserController {
 	private String key;
 
 	@GetMapping
-	public String users(String hashtag) {
+	public String users(String hashtag, String date, String lang) {
 
 		System.out.println(hashtag.replace(" ", ""));
 		JSONObject www = new JSONObject();
@@ -34,15 +34,23 @@ public class UserController {
 		List<word> test = new ArrayList<word>();
 		switch(hashtag.replace(" ", ""))
 		{
-			case "china":
+			case "GOT7":
 				test = createWords("classpath:static/json/als.txt");
 				break;
 			case "BTS":
 				test = createWords("classpath:static/json/bts.txt");
 				break;
+			case "2020Mama":
+				test = createWords("classpath:static/json/2020Mama.txt");
+				break;
+			case "InWonderWatchParty":
+				test = createWords("classpath:static/json/iwonder.txt");
+				break;
 			
 
 		}
+
+
 
 
 
@@ -79,16 +87,25 @@ public class UserController {
 
 	public List<word> createWords(String path)
 	{
+		System.out.println("Start creating Words....");
+
 		List<word> words = new ArrayList<word>();
 		try {
 			File file = ResourceUtils.getFile(path);
-			
+
+			System.out.println("Found File: " + file);
+
 			Scanner myReader = new Scanner(file);
+
+			System.out.println("Reader created: " + myReader);
+
+
 			while (myReader.hasNextLine()) {
 			  String data = myReader.nextLine();
-			  System.out.print(data.split("#")[1].split("\t")[0] + "    ");
-			  System.out.println(data.split("#")[1].split("\t")[0].matches("[a-zA-Z1-9]+"));
-				if(data.split("#")[1].split("\t")[0].matches("[a-zA-Z1-9]+"))
+
+			  System.out.println("Line to analyse: " + data);
+			  
+				if(true)//data.split("#")[1].split("\t")[0].matches("[a-zA-Z1-9]+"))
 				{
 					words.add(new word(data.split("#")[1].split("\t")[0], Float.parseFloat(data.split("\t")[1])));
 				}
@@ -99,7 +116,8 @@ public class UserController {
 			e.printStackTrace();
 		  }
 
-		System.out.println(words);
+		Collections.sort(words, (o1, o2) -> (int)(o1.getPerc() - o2.getPerc()));
+		Collections.reverse(words);
 		return words;
 	}
 

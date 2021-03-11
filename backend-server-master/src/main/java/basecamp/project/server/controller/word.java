@@ -11,4 +11,9 @@ public class word implements Serializable{
         wo= w;
         percentage = p;
     }
+
+    public float getPerc()
+    {
+        return percentage;
+    }
 }
