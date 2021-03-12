@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>basecamp.project</groupId>
-	<artifactId>server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>server</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>praktikum</artifactId>
+	<version>1</version>
+	<name>analys</name>
+	<description>Anaylse often used Hashtags</description>
 	<packaging>war</packaging>
 
 	<parent>
@@ -54,10 +54,10 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency>-->
 
 
 		<dependency>
@@ -112,7 +112,7 @@
 </dependency>
 
 
-<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core -->
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core 
 <dependency>
     <groupId>org.apache.hadoop</groupId>
     <artifactId>hadoop-mapreduce-client-core</artifactId>
@@ -134,142 +134,8 @@
            <classifier>models</classifier> 
         </dependency>
 
-
-<dependency>
-      <groupId>com.apple</groupId>
-      <artifactId>AppleJavaExtensions</artifactId>
-      <version>1.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>de.jollyday</groupId>
-      <artifactId>jollyday</artifactId>
-      <version>0.4.9</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.lucene</groupId>
-      <artifactId>lucene-queryparser</artifactId>
-      <version>7.5.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.lucene</groupId>
-      <artifactId>lucene-analyzers-common</artifactId>
-      <version>7.5.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.lucene</groupId>
-      <artifactId>lucene-core</artifactId>
-      <version>7.5.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.0.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>xom</groupId>
-      <artifactId>xom</artifactId>
-      <version>1.3.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.10.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.ejml</groupId>
-      <artifactId>ejml-core</artifactId>
-      <version>0.38</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.ejml</groupId>
-      <artifactId>ejml-ddense</artifactId>
-      <version>0.38</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.ejml</groupId>
-      <artifactId>ejml-simple</artifactId>
-      <version>0.38</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.json</artifactId>
-      <version>1.0.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.12</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.google.protobuf</groupId>
-      <artifactId>protobuf-java</artifactId>
-      <version>3.9.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.pholser</groupId>
-      <artifactId>junit-quickcheck-core</artifactId>
-      <version>0.5</version>
-      <scope>test</scope>
-    </dependency>
+-->
     
-    <dependency>
-      <groupId>com.pholser</groupId>
-      <artifactId>junit-quickcheck-generators</artifactId>
-      <version>0.5</version>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>javax.activation</groupId>
-      <artifactId>javax.activation-api</artifactId>
-      <version>1.2.0</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-      <version>2.4.0-b180830.0359</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-core</artifactId>
-      <version>2.3.0.1</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>2.4.0-b180830.0438</version>
-    </dependency>
-
 	
  </dependencies>
 

@@ -29,7 +29,7 @@ public class IndexController {
 
 		model.addAttribute("key", key);
 
-		return "index";
+		return "redirect:/hello";
 	}
 
 
@@ -49,20 +49,29 @@ public class IndexController {
 		,new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f),new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f), new word("w", 31.0f)};
 		}
 
-		String s = analyser.getwords();
 		model.addAttribute("words",words);
 
- 		//TODO: SQL abfrage um alle Hashtags zu bekommen
-		String[] hashs = {"BTS","GOT7","2020Mama", "InWonderWatchParty"};
 		
-		MySQLconnect sql = new MySQLconnect();
+		
 
+		try{
+			MySQLconnect sql = new MySQLconnect();
+			System.out.println(sql.getHashtags().size());
+			model.addAttribute("hashs", sql.getRandomHashtag());
+			model.addAttribute("sql", "Connected Successfully!");
+		}catch(Exception e)
+		{
+			model.addAttribute("sql", "cant connect to mysql!");
+			System.out.println(e);
+		}
 
-
-		model.addAttribute("hashs", hashs);
+		
+		
 
 		return "hello";
 	}
+
+
 
 
 	@RequestMapping(value = { "/hello2" }, method = RequestMethod.GET)

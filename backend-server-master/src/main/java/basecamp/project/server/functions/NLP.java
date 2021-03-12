@@ -1,3 +1,5 @@
+/** 
+
 package basecamp.project.server.functions;
 
 import java.util.Properties;
@@ -41,3 +43,5 @@ public static int findSentiment(String tweet) {
     return mainSentiment;
     }
 }
+
+*/

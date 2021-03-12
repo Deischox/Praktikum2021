@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BA-Project: Start page</title>
+    <link rel="stylesheet" media="all" href="css/style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Hashtag Analyse</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        
+        <ul class="navbar-nav mb-2 ms-auto mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Info</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<body>
+    <h1>Dies ist ein weiterer Test</h1>
+
+    <p>Hello to you, <q th:utext="${name}"></q></p>
+    <a href="/">Back Home</a>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+<script src="javascript/sketch.js"></script>
+</html>
