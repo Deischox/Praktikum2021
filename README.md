@@ -95,7 +95,7 @@ In the settings you can filter the types of visualization. So if you don't want 
 Silas Ueberschaer - <a href= "mailto:silas.ueberschaer@gmx.de">Send Email</a>
 
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [Github](https://github.com/Deischox/Praktikum2021)
 
 
 
