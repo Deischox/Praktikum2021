@@ -93,6 +93,7 @@ In the settings you can filter the types of visualization. So if you don't want 
 ## Contact
 
 Silas Ueberschaer - [Email](silas.ueberschaer@gmx.de) - email
+<a href= "mailto:abc@example.com">Send Email</a>
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
