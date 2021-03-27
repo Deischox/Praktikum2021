@@ -3,7 +3,7 @@
 <p align="center">
   <h3 align="center">Hashtag Analyse - Base.camp WS 2020/21</h3>
   <div align="center"><a style="text-align:center;display:block;" href="http://basecamp-demos.informatik.uni-hamburg.de:8080/praktikum-1/hello"> Demo </a></div>
-  <img src="https://github.com/Deischox/Praktikum2021/src/main/resources/images/header.FPG">
+  <img src="https://github.com/Deischox/Praktikum2021/src/main/resources/images/header.JPG">
 </p>
 
 
