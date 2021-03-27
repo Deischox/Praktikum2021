@@ -42,9 +42,11 @@ This project was programmed during the winter semester in the base.camp module. 
 
 ### Built With
 
-* []()
-* []()
-* []()
+* [Spring-Boot]()
+* [Bootstrap]()
+* [particles.js]()
+* [chart.js]()
+* [d3.js]()
 
 
 
