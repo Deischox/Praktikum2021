@@ -77,7 +77,7 @@ To get a local copy up and running follow these simple steps.
 
 <img src="https://github.com/Deischox/Praktikum2021/blob/master/src/main/resources/images/settings.JPG">
 </br>
-To use the website, the first thing you should do is choose a hashtag. There is a selection of 200 hashtags, but you can also choose your own hashtag on the off chance. In the database are 60000 thousand hashtags and in the dropdown there are just 0.3% of them. Next, you can select the language in which the hashtags should be analyzed. The drop checkboxes allow you to filter RT, filter @ or return only Latin characters to filter punctuation, emojis, etc.
+To use the website, the first thing you should do is choose a hashtag. There is a selection of 200 hashtags, but you can also choose your own hashtag on the off chance. In the database are 60000 thousand hashtags and in the dropdown there are just 0.3% of them. Next, you can select the language in which the hashtags should be analyzed. The drop checkboxes allow you to filter RT, filter @ or return only Latin characters to filter punctuation, emojis, etc. Finally press Submit to visualize your search.
 </br>
 </br>
 <img src="https://github.com/Deischox/Praktikum2021/blob/master/src/main/resources/images/settingstab.JPG">
