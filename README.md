@@ -37,12 +37,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
-
+This project was programmed during the winter semester in the base.camp module. The goal was to create a website where you can enter a hashtag and then the most used words with this hashtag are visualized. The module lasted 3 weeks and the project was implemented by Jeremy, Selen, Artiom and Silas. Jeremy and Selen were responsible for analyzing the data and making it smaller. Selen set up the database and wrote the Java function to retrieve the data from it. Silas was responsible for the front- and backend.
 
 ### Built With
 
