@@ -89,12 +89,10 @@ To use the website, the first thing you should do is choose a hashtag. There is 
 </br>
 In the settings you can filter the types of visualization. So if you don't want to have the Wordcloud, you can simply hide it.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Silas Ueberschaer - [Email](silas.ueberschaer@gmx.de) - email
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
