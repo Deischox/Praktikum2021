@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <h3 align="center">Hashtag Analyse - Base.camp WS 2020/21</h3>
-  <a align="center" href="http://basecamp-demos.informatik.uni-hamburg.de:8080/praktikum-1/hello"> Demo </a>
+  <a text-align="center" href="http://basecamp-demos.informatik.uni-hamburg.de:8080/praktikum-1/hello"> Demo </a>
 </p>
 
 
