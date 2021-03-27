@@ -11,6 +11,9 @@ particlesJS.load('particles-js', 'particles.json', function() {
 
 /* Otherwise just put the config content (json): */
 
+/**
+ * The particles for the Background in the Header
+ */
 particlesJS('particles-js',
   
 {

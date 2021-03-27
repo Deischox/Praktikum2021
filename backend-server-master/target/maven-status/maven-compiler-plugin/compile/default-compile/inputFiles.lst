@@ -1,11 +1,5 @@
 C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\controller\IndexController.java
 C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\controller\word.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\functions\What2Think.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\model\type\User.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\model\UserDBModel.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\functions\NLP.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\functions\analyser.java
 C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\ServerApplication.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\model\UserModel.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\controller\UserController.java
-C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\controller\UserControllerMap.java
+C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\functions\MySQLconnect.java
+C:\Users\Silas\Desktop\Praktikum\backend-server-master\backend-server-master\src\main\java\basecamp\project\server\controller\HashtagController.java

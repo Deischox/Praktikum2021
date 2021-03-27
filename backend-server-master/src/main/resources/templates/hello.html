@@ -239,23 +239,33 @@
             <canvas id="myChart"></canvas>
             <script>
               var ctx = document.getElementById('myChart').getContext('2d');
-              var chart = new Chart(ctx, {
+              
+                var chart = new Chart(ctx, {
                   // The type of chart we want to create
                   type: 'line',
 
                   // The data for our dataset
                   data: {
-                      labels: [],
+                      labels: ["Jan","Apr","Jun","Nov"],
                       datasets: [{
-                          label: '',
+                          label: "",
                           backgroundColor: 'rgb(255, 99, 132)',
                           borderColor: 'rgb(255, 99, 132)',
-                          data: []
+                          data: [0,0,0,0]
                       }]
                   },
 
                   // Configuration options go here
-                  options: {}
+                  options: {
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              suggestedMin: 50,
+                              suggestedMax: 100
+                          }
+                      }]
+                  }
+              }
               });
             </script>
           </div>
@@ -281,7 +291,7 @@
                 <tr th:each="data, iStat: ${words}">
                     <th th:text="${iStat.count}">1</th>
                     <td class="data-words" th:text="${data.wo}"></td>
-                    <td class="data-percentage" th:inline="text"> [[${data.percentage}]]</td>
+                    <td class="data-percentage" th:inline="text"> [[${data.amount}]]</td>
                 </tr>
                 </tbody>
             </table>
