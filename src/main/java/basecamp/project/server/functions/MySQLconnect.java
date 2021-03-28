@@ -17,29 +17,35 @@ import org.springframework.util.ResourceUtils;
 import basecamp.project.server.controller.word;
 
 
+
 /**
- * Diese Klasse stellt eine Verbindung zu MySQL her und kann Daten in die Datenbank speichern, bestehende Zeilen aktualisieren und Daten auslesen.
- */
+* The Class is used to build a connection with the Database and get the data
+*
+* @author  Silas Ueberschaer
+* @version 2.0
+* @since   2021-03-28
+*/
 public class MySQLconnect{
     private static Connection con = null;
 
-    private static String dbHost;	// Hostname
+    // Hostname
+    private static String dbHost;	
 
-    private static String dbPort = "3306";		// Port -- Standard: 3306
+    // Port -- Standard: 3306
+    private static String dbPort = "3306";		
 
-    
-    private static String dbName;	// Datenbankname
+    // Datenbankname
+    private static String dbName;	
 
-    
-    private static String dbUser;		// Datenbankuser
+    // Datenbankuser
+    private static String dbUser;		
 
-    
-    private static String dbPass;		// Datenbankpasswort
-    //private static String dbTable = "posts";		// Posts Tabelle
+    // Datenbankpasswort
+    private static String dbPass;		
 
     /**
-     * Stellt eine Verbindung zur Datenbank her.
-     */
+	 * This Function builds a connection with the Database
+	 */
     public MySQLconnect() {
         // get credentials
         
@@ -93,8 +99,8 @@ public class MySQLconnect{
     }
 
     /**
-     * Schließt die Verbindung zur Datenbank
-     */
+	 * This Function closes the connection with the database
+	 */
     public void close() {
         try {
             con.close();
@@ -102,51 +108,11 @@ public class MySQLconnect{
             System.out.println("Verbindung konnte nicht geschlossen werden");
         }
     }
-
-    /**
-     * Diese Methode gibt alle Hashtags aus der Datenbank in einer ArrayList wieder.
-     * @return
-     */
-    public static ArrayList getHashtags()
-    {
-        Statement st = null;
-        try
-        {
-            st = con.createStatement();
-        }
-        catch (SQLException e)
-        {
-            System.out.println("Statement konnte nicht erstellt werden");
-        }
-        String sql = ("SELECT DISTINCT hashtag FROM hashtagsWithWords;");
-        ResultSet rs = null;
-        ArrayList results = new ArrayList();
-        try
-        {
-            rs = st.executeQuery(sql);
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Anfrage konnte nicht ausgeführt werden");
-        }
-        try {
-            while(rs.next()) {
-                String hashtag = rs.getString("hashtag");
-                results.add(hashtag);
-            }
-        } catch (SQLException e) {
-            System.out.println("Auf ResultSet konnte nicht zugegriffen werden");
-        }
-        return results;
-
-
-    }
-
-    /**
-     * Diese Methode gibt alle Hashtags aus der Datenbank in einer ArrayList wieder.
-     * @return
-     */
-    public static ArrayList getRandomHashtag()
+    /** 
+	 * Function gives Back a List with the most used hashtags
+	 * @return		A ArrayList with the 100 most used hashtags
+	 */
+    public static ArrayList getMostHashtags()
     {
         Statement st = null;
         try
@@ -181,10 +147,14 @@ public class MySQLconnect{
 
     }
     /**
-     * Returnt eine ArrayList mit allen Wörtern und Häufigkeiten, die zusammen mit Hashtag auftauchen.
-     * @param hashtag
-     * @return
-     */
+	 * This Function gives back the Data of a Hashtag
+	 * 
+	 * @param hashtag 	The Hashtag to analyse
+	 * @param at 		If '@' should be included in the Data (exp: @Obama)
+	 * @param rt		If 'RT' or 'rt' should be included in the Data
+	 * @param latin		If all Data should be in Latin Letters (No emojis, punctuation character, ...)
+	 * @return			Returns a List of 'word' with the Data
+	 */
     public static List<word> getWordsAndOccurrence(String hashtag, boolean rt, boolean at, boolean latin)
     {
         Statement st = null;
@@ -235,10 +205,15 @@ public class MySQLconnect{
     }
 
     /**
-     * Returnt eine ArrayList mit allen Wörtern und Häufigkeiten, die zusammen mit Hashtag auftauchen.
-     * @param hashtag
-     * @return
-     */
+	 * This Function gives back the Data of a Hashtag with only data of hashtags with the given language
+	 * 
+	 * @param hashtag 	The Hashtag to analyse
+	 * @param lang 		The Language of the Tweets
+	 * @param at 		If '@' should be included in the Data (exp: @Obama)
+	 * @param rt		If 'RT' or 'rt' should be included in the Data
+	 * @param latin		If all Data should be in Latin Letters (No emojis, punctuation character, ...)
+	 * @return			Returns a List of 'word' with the Data
+	 */
     public static List<word> getWordsAndOccurrencebyLang(String hashtag, String lang, boolean rt, boolean at, boolean latin)
     {
         Statement st = null;
@@ -254,7 +229,7 @@ public class MySQLconnect{
         }
         // für die Tabelle
         System.out.println("SETUP");
-        String sql = ("SELECT word, SUM(occurrence) AS Anzahl FROM hashtagsWordsLanguageAndDate WHERE hashtag ='" + hashtag +"' AND lang ='" + lang + "'GROUP BY word;");
+        String sql = ("SELECT word, SUM(occurrence) AS Anzahl FROM hashtagsWordsLanguageAndDate WHERE hashtag ='" + hashtag +"' AND lang ='" + lang + "'GROUP BY word ORDER BY Anzahl DESC LIMIT 500;");
         ResultSet rs = null;
 
         List<word> re = new ArrayList<word>();
@@ -268,7 +243,7 @@ public class MySQLconnect{
         }
         try {
             while(rs.next()) {
-                int occurrenceInt = rs.getInt("occurrence");
+                int occurrenceInt = rs.getInt("Anzahl");
                 String occurrence = String.valueOf(occurrenceInt);
                 String word    = rs.getString("word");
                 String[] wordOcc = {word, occurrence};
@@ -283,110 +258,18 @@ public class MySQLconnect{
                 
             }
         } catch (SQLException e) {
-            System.out.println("Auf ResultSet konnte nicht zugegriffen werden");
+            System.out.println("Auf ResultSet konnte nicht zugegriffen werden, " + e);
         }
         System.out.println(re);
         return re;
     }
 
     /**
-     * Returnt eine Liste mit allen Wörtern und Häufigkeiten, die zusammen mit Hashtag in einer
-     * bestimmten Sprache auftauchen.
-     * @param hashtag, language
-     * @return
-     */
-    public static List<word> getWordsWithOccurrenceByLanguage(String hashtag, String language, boolean rt, boolean at, boolean latin)
-    {
-        Statement st = null;
-        try
-        {
-            st = con.createStatement();
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Statement konnte nicht erstellt werden");
-        }
-        String sql = ("SELECT word, occurrence FROM hashtagsWordsLanguage WHERE hashtag =" + hashtag + "AND lang =" + language + "ORDER BY occurrence DESC;");
-        ResultSet rs = null;
-        List<word> re = new ArrayList<word>();
-        try
-        {
-            rs = st.executeQuery(sql);
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Anfrage konnte nicht ausgeführt werden");
-        }
-        try {
-            while(rs.next()) {
-                int occurrenceInt = rs.getInt("occurrence");
-                String occurrence = String.valueOf(occurrenceInt);
-                String word    = rs.getString("word");
-                String [] wordOcc = {word, occurrence};
-                
-                if(!(word.contains("@") && !at) 
-					&&  !((word.equals("RT") || word.equals("rt"))&& !rt)
-					&&  (!latin || (word.matches("[a-zA-Z1-9]+")))
-					)
-                    {
-                        re.add(new word(word, Float.parseFloat(occurrence)));
-                    }
-                
-            }
-        } catch (SQLException e) {
-            System.out.println("Auf ResultSet konnte nicht zugegriffen werden");
-        }
-        return re;
-    }
-
-    /**
-     * Returnt eine ArrayList mit allen Wörtern und Häufigkeiten, die zusammen mit dem Hashtag an einem
-     * bestimmten Tag auftauchen.
-     * @param hashtag, date
-     * @return
-     */
-    public static ArrayList getWordsWithOccurrenceByDate(String hashtag, String date)
-    {
-        Statement st = null;
-        try
-        {
-            st = con.createStatement();
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Statement konnte nicht erstellt werden");
-        }
-        String sql = ("SELECT word, occurrence FROM hashtagsWordsDate WHERE hashtag ='" + hashtag + "' AND dateMDY =" + date + "ORDER BY occurrence DESC;");
-        ResultSet rs = null;
-        ArrayList results = new ArrayList();
-        try
-        {
-            rs = st.executeQuery(sql);
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Anfrage konnte nicht ausgeführt werden");
-        }
-        try {
-            while(rs.next()) {
-                int occurrenceInt = rs.getInt("occurrence");
-                String occurrence = String.valueOf(occurrenceInt);
-                String word    = rs.getString("word");
-                String [] wordOcc = {word, occurrence};
-                results.add(wordOcc);
-            }
-        } catch (SQLException e) {
-            System.out.println("Auf ResultSet konnte nicht zugegriffen werden");
-        }
-        return results;
-    }
-
-    /**
-     * Returnt eine ArrayList mit allen Wörtern und Häufigkeiten, die zusammen mit dem Hashtag an einem
-     * bestimmten Tag auftauchen.
-     * @param hashtag, date
-     * @return
-     */
+	 * This Function gives back a List of 'word' with date of usage and count
+	 * 
+	 * @param hashtag 	The Hashtag to analyse
+	 * @return			List of 'word' with date of usage and count
+	 */
     public static List<word> getTimeline(String hashtag)
     {
         Statement st = null;
@@ -423,47 +306,4 @@ public class MySQLconnect{
         }
         return re;
     }
-
-    /**
-     * Returnt eine Liste mit allen Wörtern und Häufigkeiten, die zusammen mit dem Hashtag an einem
-     * bestimmten Tag in einer bestimmten Sprache auftauchen.
-     * @param hashtag, language, date
-     * @return
-     */
-    public static ArrayList getWordsWithOccurrenceByLanguageAndDate(String hashtag, String language, String date)
-    {
-        Statement st = null;
-        try
-        {
-            st = con.createStatement();
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Statement konnte nicht erstellt werden");
-        }
-        String sql = ("SELECT word, occurrence FROM hashtagsWordsLanguageDate WHERE hashtag =" + hashtag + "AND lang =" + language + "AND dateMDY =" + date + "ORDER BY occurrence DESC;");
-        ResultSet rs = null;
-        ArrayList results = new ArrayList();
-        try
-        {
-            rs = st.executeQuery(sql);
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Anfrage konnte nicht ausgeführt werden");
-        }
-        try {
-            while(rs.next()) {
-                int occurrenceInt = rs.getInt("occurrence");
-                String occurrence = String.valueOf(occurrenceInt);
-                String word    = rs.getString("word");
-                String [] wordOcc = {word, occurrence};
-                results.add(wordOcc);
-            }
-        } catch (SQLException e) {
-            System.out.println("Auf ResultSet konnte nicht zugegriffen werden");
-        }
-        return results;
-    }
-
 }
