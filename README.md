@@ -79,7 +79,7 @@ To run the project on your local maschine you can use maeven. You need to run th
    mvn clean spring-boot:run
    ```
 ### Build
-To built your own Version is no problem. To host it you would need <a href="http://tomcat.apache.org/">Tomcat</a> or another software that can host .war files. You need to run this inside the project folder!
+You can easily build your own version with maeven. To host it you would need <a href="http://tomcat.apache.org/">Tomcat</a> or another software that can host .war files. You need to run this inside the project folder!
 1. Build your .war file 
    ```sh
    mvn clean package
