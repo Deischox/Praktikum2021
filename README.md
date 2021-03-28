@@ -37,7 +37,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project was programmed during the winter semester in the base.camp module. The goal was to create a website where you can enter a hashtag and then the most used words with this hashtag are visualized. The module lasted 3 weeks and the project was implemented by Jeremy, Selen, Artiom and Silas. Jeremy and Selen were responsible for analyzing the data and making it smaller. Selen set up the database and wrote the Java function to retrieve the data from it. Silas was responsible for the front- and backend.
+This project was programmed during the winter semester in the base.camp module. The goal was to create a website where you can enter a hashtag and then the most used words with this hashtag are visualized. The module lasted 3 weeks and the project was implemented by Jeremy, Selen, Artiom and Silas. Jeremy and Selen were responsible for analyzing the data and making it smaller. Selen set up the database and wrote the Java function to retrieve the data from it. Silas was responsible for the front- and backend. The project was built on windows.
 
 ### Built With
 
