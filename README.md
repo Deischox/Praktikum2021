@@ -56,7 +56,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-1. Install <a href="https://maven.apache.org/install.html">Maeven</a> and <a href="https://www.java.com/de/download/manual.jsp">Java 15.0.1 or higher</a>
+1. Install <a href="https://maven.apache.org/install.html">Maeven</a> and <a href="https://www.java.com/de/download/manual.jsp">Java 15.0.1</a> or higher
 
 ### Installation
 
@@ -71,7 +71,8 @@ To get a local copy up and running follow these simple steps.
    mysql.database= DATABASE_NAME
    mysql.host= DATABASE_HOST
    ```
-3. Run with maeven
+### Run
+1. Run with maeven
    ```sh
    mvn clean spring-boot:run
    ```
