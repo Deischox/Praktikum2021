@@ -100,7 +100,10 @@ In the settings you can filter the types of visualization. So if you don't want 
 <!-- CONTACT -->
 ## Contact
 
-Silas Ueberschaer - <a href= "mailto:silas.ueberschaer@gmx.de">Send Email</a>
+Silas - <a href= "mailto:silas.ueberschaer@gmx.de">Send Email</a>
+Selen - <a href= "mailto:silas.ueberschaer@gmx.de">Send Email</a>
+Jermey - <a href= "mailto:silas.ueberschaer@gmx.de">Send Email</a>
+Artiom - <a href= "mailto:silas.ueberschaer@gmx.de">Send Email</a>
 
 
 Project Link: [Github](https://github.com/Deischox/Praktikum2021)
