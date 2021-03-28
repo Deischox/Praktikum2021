@@ -24,6 +24,7 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#run">Run</a></li>
+        <li><a href="#build">Build</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -72,13 +73,18 @@ To get a local copy up and running follow these simple steps.
    mysql.host= DATABASE_HOST
    ```
 ### Run
+To run the project on your local maschine you can use maeven. You need to run this inside the project folder!
 1. Run with maeven
    ```sh
    mvn clean spring-boot:run
    ```
-
-
-
+### Build
+To built your own Version is no problem. To host it you would need <a href="http://tomcat.apache.org/">Tomcat</a> or another software that can host .war files. You need to run this inside the project folder!
+1. Build your .war file 
+   ```sh
+   mvn clean package
+   ```
+   
 <!-- USAGE EXAMPLES -->
 ## Usage
 
