@@ -1,0 +1,5 @@
+basecamp\project\server\controller\word.class
+basecamp\project\server\ServerApplication.class
+basecamp\project\server\controller\HashtagController.class
+basecamp\project\server\controller\IndexController.class
+basecamp\project\server\functions\MySQLconnect.class

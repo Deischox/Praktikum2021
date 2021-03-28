@@ -54,7 +54,7 @@ public class IndexController {
 		try
 		{
 			MySQLconnect sql = new MySQLconnect();
-			model.addAttribute("hashs", sql.getRandomHashtag());
+			model.addAttribute("hashs", sql.getMostHashtags());
 			model.addAttribute("sql", "Connected Successfully!");
 		}catch(Exception e)
 		{

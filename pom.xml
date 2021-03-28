@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>basecamp.project</groupId>
-	<artifactId>praktikum</artifactId>
+	<artifactId>hashtag-analyse</artifactId>
 	<version>1</version>
 	<name>analys</name>
 	<description>Anaylse often used Hashtags</description>
