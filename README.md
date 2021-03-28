@@ -21,7 +21,9 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#run">Run</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -51,6 +53,10 @@ This project was programmed during the winter semester in the base.camp module. 
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+1. Install <a href="https://maven.apache.org/install.html">Maeven</a> and <a href="https://www.java.com/de/download/manual.jsp">Java 15.0.1 or higher</a>
 
 ### Installation
 
