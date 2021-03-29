@@ -33,7 +33,7 @@ function changeTable(array)
   }
 
   var ctx = document.getElementById('myChart').getContext('2d');
-  console.log(ctx.innerHTML)
+
   
 
   ctx.innerHTML = "";
@@ -85,9 +85,7 @@ function changeTable(array)
     
     counter[i] = array.timeline[i].percentage;
   }
-  console.log(map);
   const mapSort1 = new Map([...map.entries()].sort((a, b) => a[0] - b[0]));
-  console.log(mapSort1);
 
   var x = 0;
   
@@ -141,7 +139,15 @@ function changeTable(array)
 
   mapSort1.forEach(setTimesAndValues)
   
-  
+
+
+  Chart.helpers.each(Chart.instances, function(instance){
+    chart = instance.chart;
+    instance.chart.destroy();
+    console.log("Cleared: "+instance.chart)
+
+  })
+
   var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
@@ -162,4 +168,3 @@ function changeTable(array)
 });
   
 }
-  

@@ -57,24 +57,28 @@ public class HashtagController {
 			if(lang.equals("All"))
 			{
 				values = sql.getWordsAndOccurrence(hashtag, rt, at, latin);
+				timeline = sql.getTimeline(hashtag);
 				
 			}else{
 				switch(lang){
 					case "English":
 						values = sql.getWordsAndOccurrencebyLang(hashtag, "en", rt, at, latin);
+						timeline = sql.getTimelineLen(hashtag,"en");
 						break;
 					case "German":
 						values = sql.getWordsAndOccurrencebyLang(hashtag, "de", rt, at, latin);
+						timeline = sql.getTimelineLen(hashtag,"de");
 						break;
 					case "Spanish":
 						values = sql.getWordsAndOccurrencebyLang(hashtag, "es" , rt, at, latin);
+						timeline = sql.getTimelineLen(hashtag,"es");
 						break;
 
 				}
 					
 
 			}
-			timeline = sql.getTimeline(hashtag);
+			
 
 		}catch(Exception e)
 		{

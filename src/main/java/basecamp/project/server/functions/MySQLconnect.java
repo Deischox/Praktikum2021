@@ -306,4 +306,48 @@ public class MySQLconnect{
         }
         return re;
     }
+
+    /**
+	 * This Function gives back a List of 'word' with date of usage and count of a given Hashtag with Language
+	 * 
+	 * @param hashtag 	The Hashtag to analyse
+     * @param len       The Language of the Tweets
+	 * @return			List of 'word' with date of usage and count
+	 */
+    public static List<word> getTimelineLen(String hashtag, String len)
+    {
+        Statement st = null;
+        try
+        {
+            st = con.createStatement();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Statement konnte nicht erstellt werden");
+        }
+        String sql = ("SELECT hashtag, dateMDY, SUM(occurrence) AS Anzahl FROM hashtagsWordsLanguageAndDate WHERE hashtag='"+hashtag+"' AND lang='"+len+"' GROUP BY dateMDY;");
+        ResultSet rs = null;
+        List<word> re = new ArrayList<word>();
+        try
+        {
+            rs = st.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            
+            System.out.println("Anfrage konnte nicht ausgeführt werden");
+        }
+        try {
+            while(rs.next()) {
+                int occurrenceInt = rs.getInt("Anzahl");
+                String occurrence = String.valueOf(occurrenceInt);
+                String word = rs.getString("dateMDY");
+                re.add(new word(word, Float.parseFloat(occurrence)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("Auf ResultSet konnte nicht zugegriffen werden");
+        }
+        return re;
+    }
 }
