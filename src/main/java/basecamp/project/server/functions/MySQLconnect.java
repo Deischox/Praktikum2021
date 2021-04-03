@@ -34,13 +34,13 @@ public class MySQLconnect{
     // Port -- Standard: 3306
     private static String dbPort = "3306";		
 
-    // Datenbankname
+    // Databankname
     private static String dbName;	
 
-    // Datenbankuser
+    // Databankuser
     private static String dbUser;		
 
-    // Datenbankpasswort
+    // Databankpasswort
     private static String dbPass;		
 
     /**
@@ -83,9 +83,7 @@ public class MySQLconnect{
 		  }
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");    // Datenbanktreiber für JDBC Schnittstellen laden.
-
-            // Verbindung zur JDBC-Datenbank herstellen.
+            Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?useSSL=false", dbUser, dbPass);
             System.out.println("Verbindung erfolgreich!");
         } catch (ClassNotFoundException e) {
@@ -168,8 +166,6 @@ public class MySQLconnect{
         {
             System.out.println("Statement konnte nicht erstellt werden");
         }
-        // für die Tabelle
-        System.out.println("SETUP");
         String sql = ("SELECT word, occurrence FROM hashtagsWithWords WHERE hashtag = '" + hashtag + "' ORDER BY occurrence DESC;");
         ResultSet rs = null;
 
@@ -227,8 +223,6 @@ public class MySQLconnect{
         {
             System.out.println("Statement konnte nicht erstellt werden");
         }
-        // für die Tabelle
-        System.out.println("SETUP");
         String sql = ("SELECT word, SUM(occurrence) AS Anzahl FROM hashtagsWordsLanguageAndDate WHERE hashtag ='" + hashtag +"' AND lang ='" + lang + "'GROUP BY word ORDER BY Anzahl DESC LIMIT 500;");
         ResultSet rs = null;
 
