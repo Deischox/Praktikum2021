@@ -121,7 +121,7 @@ public class MySQLconnect{
         {
             System.out.println("Statement konnte nicht erstellt werden");
         }
-        String sql = ("SELECT DISTINCT hashtag FROM hashtagsWithWords WHERE occurrence > 60000 ORDER BY hashtag ASC LIMIT 100;");
+        String sql = ("SELECT DISTINCT hashtag FROM hashtagsWithWords WHERE hashtag REGEXP '^[a-zA-Z0-9]' GROUP BY hashtag ORDER BY MAX(occurrence) DESC LIMIT 100");
         ResultSet rs = null;
         ArrayList results = new ArrayList();
         try
